@@ -16,7 +16,7 @@ const[check,setCheck]=useState(false)
 const[cartIds,setCartIds]=useState([])
 
 
-{/**huhurhu nrhr */}
+
     
 
 
