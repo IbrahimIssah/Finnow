@@ -1,11 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import React,{useState,useEffect,useContext} from 'react';
 import { StyleSheet, Text, View,Button,Image } from 'react-native';
-import { WebView } from 'react-native-webview';
-import axios from 'axios'
 import { dataContext } from './dataContext';
 
 export default function Item({navigation}) {
+
     const{data_,product_,cart_,confirm_}=useContext(dataContext)
 const[data,setData]=data_
 const[product,setProduct]=product_
@@ -20,11 +18,11 @@ const[cartIds,setCartIds]=useState([])
     
 
 
-   useEffect(()=>{
-//setCheck(false)
-   },[])
+  
     
 useEffect(()=>{
+    {/*getting all ids in cartItems*/}
+
 if(cartItems){
     cartItems.map(item=>{
 cartIds.push(item.id)
@@ -35,7 +33,7 @@ cartIds.push(item.id)
 
 
 useEffect(()=>{
-
+{/* a confirmation check==true means item already exist in cart*/}
     if(check==true){
         cartItems.map(item=>{
             if(item.id==product.id){
@@ -54,7 +52,9 @@ navigation.navigate('Checkout')
 
 
 const UpdateProductQuantity=(a)=>{
-   
+  
+    {/*Function to update item Quantity */}
+    
 if(a=='add'){
     setProductQuantity(productQuantity + 1)
     setProduct({...product,quantity:productQuantity+1})
@@ -73,6 +73,7 @@ else{}
 
 const AddtoCart=()=>{
 
+    {/* Function to add to cart */}
    
 if(cartItems && cartItems.length > 0){
    
@@ -168,11 +169,6 @@ const styles = StyleSheet.create({
         backgroundColor:'grey',
         
       
-    },
-    container1:{
-       
-        width:100,
-       color:'blue'
     },
     addtoCart:{
         width:100,

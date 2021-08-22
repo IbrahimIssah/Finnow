@@ -1,10 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import React,{useState,useEffect,useContext} from 'react';
 import { StyleSheet, Text, View,Button,Image, TouchableOpacity,ScrollView } from 'react-native';
-import { WebView } from 'react-native-webview';
 import axios from 'axios'
 import { dataContext } from './dataContext';
-import { ScreenStackHeaderBackButtonImage } from 'react-native-screens';
+
 
 
 export default function Home({navigation}) {
@@ -18,7 +16,8 @@ const[data,setData]=useState([])
   
 
 useEffect( async()=>{
-    const axios = require('axios');
+    
+  {/* fetching product data from server*/}
     await axios.get('http://localhost:3000/data') 
       .then( (response)=> {
       
@@ -43,7 +42,7 @@ useEffect( async()=>{
     <View style={styles.container}  > 
 
     <ScrollView>
-   
+   {/*mapping through product data from server */}
       { data &&
         data.map(item=>{
           return(
@@ -77,10 +76,5 @@ const styles = StyleSheet.create({
         backgroundColor:'grey',
         
       
-    },
-    container1:{
-       
-        with:100,
-       color:'blue'
     }
 });

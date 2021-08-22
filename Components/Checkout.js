@@ -1,7 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React,{useState,useEffect,useContext} from 'react';
 import { StyleSheet, Text, View,Button,Image, ScrollView } from 'react-native';
-import { WebView } from 'react-native-webview';
 import axios from 'axios'
 import { dataContext } from './dataContext';
 
@@ -11,12 +9,15 @@ const[data,setData]=data_
 const[product,setProduct]=product_
 const[cartItems,setCartItems]=cart_
 
+
+
+
 const PlaceOrder=async()=>{
-    const axios = require('axios');
-    await axios.post('http://localhost:3000/orders',cartItems )  
+    {/*order function*/}
+
+    await axios.post('http://localhost:3000/orders',{id:'',order:cartItems})  
       .then((response)=> {
-      
-       //setData(response.data)
+       
        navigation.navigate('OrderPage')
         console.log(response);
       })
@@ -27,6 +28,8 @@ const PlaceOrder=async()=>{
   }
 
 const RemoveItem=(a)=>{
+  {/* Function to remove Item*/}
+
     if(cartItems.length==1){
         setCartItems([])
     }
@@ -44,6 +47,7 @@ setCartItems(filter)
     <View style={styles.container}  > 
     
     <ScrollView>
+    {/* mapping through cartItems */}
     {cartItems.map(item=>{
         return(
            <View style={{margin:5,backgroundColor:'white'}}>
