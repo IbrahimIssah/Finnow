@@ -1,6 +1,6 @@
-import React,{useState,useEffect,useContext} from 'react';
-import { StyleSheet, Text, View,Button,Image } from 'react-native';
-import axios from 'axios'
+import React from 'react';
+import { StyleSheet, Text, View} from 'react-native';
+
 
 
 export default function OrderPage() {
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     },
 
     order_View_1:{
-        with:100,
       maxWidth:100
     }
 });

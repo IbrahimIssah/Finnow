@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react';
-import { StyleSheet, Text, View,Button,Image, TouchableOpacity,ScrollView } from 'react-native';
+import { StyleSheet, Text, View,Image, TouchableOpacity,ScrollView } from 'react-native';
 import axios from 'axios'
 import { dataContext } from './dataContext';
 
@@ -7,14 +7,13 @@ import { dataContext } from './dataContext';
 
 export default function Home({navigation}) {
 
-  const{product_,data_}=useContext(dataContext)
+  const{product_}=useContext(dataContext)
   const[product,setProduct]=product_
   const[check,setCheck]=useState(false)
 const[data,setData]=useState([])
 
   
-  
-  
+
 
 useEffect( async()=>{
     

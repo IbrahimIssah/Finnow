@@ -1,5 +1,4 @@
-import React,{useState,useEffect} from 'react';
-import { StyleSheet, Text, View,Button } from 'react-native';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -10,8 +9,7 @@ import CheckOut from './Checkout';
 
 
 export default function Stack() {
-const[data,setData]=useState([])
-  
+
 
 const Stack = createNativeStackNavigator();
 

@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useContext} from 'react';
+import React,{useContext} from 'react';
 import { StyleSheet, Text, View,Button,Image, ScrollView } from 'react-native';
 import axios from 'axios'
 import { dataContext } from './dataContext';
@@ -6,9 +6,7 @@ import { dataContext } from './dataContext';
 export default function CheckOut({navigation}) {
 
   
-const{data_,product_,cart_}=useContext(dataContext)
-const[data,setData]=data_ 
-const[product,setProduct]=product_
+const{cart_}=useContext(dataContext)
 const[cartItems,setCartItems]=cart_
 
 
@@ -74,14 +72,12 @@ setCartItems(filter)
 }
 
 const styles = StyleSheet.create({
+  
     container:{
-     
-        flex:1,
+     flex:1,
     justifyContent:'center',
     alignItems:'center',
-        backgroundColor:'grey',
-        
-      
+    backgroundColor:'grey', 
     }
   
 });
