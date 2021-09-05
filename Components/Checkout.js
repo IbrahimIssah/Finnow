@@ -4,7 +4,9 @@ import axios from 'axios'
 import { dataContext } from './dataContext';
 
 export default function CheckOut({navigation}) {
-    const{data_,product_,cart_}=useContext(dataContext)
+
+  
+const{data_,product_,cart_}=useContext(dataContext)
 const[data,setData]=data_ 
 const[product,setProduct]=product_
 const[cartItems,setCartItems]=cart_

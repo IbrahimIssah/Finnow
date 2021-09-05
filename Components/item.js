@@ -4,11 +4,10 @@ import { dataContext } from './dataContext';
 
 export default function Item({navigation}) {
 
-    const{data_,product_,cart_,confirm_}=useContext(dataContext)
+const{data_,product_,cart_}=useContext(dataContext)
 const[data,setData]=data_
 const[product,setProduct]=product_
 const[cartItems,setCartItems]=cart_
-const[confirm,setConfirm]=confirm_
 const[productQuantity,setProductQuantity]=useState(1)
 const[check,setCheck]=useState(false)
 const[cartIds,setCartIds]=useState([])
@@ -35,16 +34,17 @@ cartIds.push(item.id)
 useEffect(()=>{
 {/* a confirmation check==true means item already exist in cart*/}
     if(check==true){
-        cartItems.map(item=>{
-            if(item.id==product.id){
-                return item.quantity=productQuantity
-            }
-        })
-        setTimeout(()=>{
-            setCheck(false)
-navigation.navigate('Checkout')
+
+    cartItems.map(item=>{if(item.id==product.id){
+    return item.quantity=productQuantity
+            } })
+
+    setTimeout(()=>{
+    setCheck(false)
+    navigation.navigate('Checkout')
  
-        },2000)
+    },2000)
+
     }
 
 
@@ -57,8 +57,7 @@ const UpdateProductQuantity=(a)=>{
     
 if(a=='add'){
     setProductQuantity(productQuantity + 1)
-    setProduct({...product,quantity:productQuantity+1})
-    
+    setProduct({...product,quantity:productQuantity+1})   
 }
 
 if(a=='remove' && productQuantity!=1){
@@ -76,19 +75,11 @@ const AddtoCart=()=>{
     {/* Function to add to cart */}
    
 if(cartItems && cartItems.length > 0){
-   
 
-    
-  if(cartIds.includes(product.id)){
-   
-    
+  if(cartIds.includes(product.id)){ 
     setCheck(true)
+   }
    
-  }
-
-  
-
-
   else{
     setData(productQuantity)
     setCartItems([...cartItems,product])
@@ -96,15 +87,17 @@ if(cartItems && cartItems.length > 0){
   }
 
 }
-    else{
-        if(cartItems==''){
 
-        setData(productQuantity)
+
+else{
+
+if(cartItems==''){
+  setData(productQuantity)
   setCartItems([...cartItems,product])
   navigation.navigate('Checkout')
-  
-        }
-    }
+   }
+
+}
       
             
     
@@ -116,23 +109,30 @@ if(cartItems && cartItems.length > 0){
 
   return (
     
-    <View style={styles.container}  > 
-{check==true &&<View>
+<View style={styles.items_}  >  
+
+{check==true &&
+
+ <View>
 <Text style={{color:'green'}}>
 Item already in Cart,quantity has been updated
 </Text>
-</View>}
+</View>
+
+}
 
 
 
     {/*beginning of product View*/}
     <View style={{backgroundColor:'white'}} >
-      
 
-      <Image style={{width:120,height:90}}  
+      <View>
+      <Image style={{width:90,height:90,maxWidth:90}}  
       source={{uri:product.url}} /> 
       <Text>{product.title}</Text>
       <Text style={{color:'tomato'}}>${product.price}</Text>
+      </View>
+
       </View>
  {/*end of product View*/}
 
@@ -141,7 +141,7 @@ Item already in Cart,quantity has been updated
  {/*beginning of  addtocart View*/}
       <View>
 
-      <View style={styles.addtoCart}>
+      <View style={styles.addtoCart_}>
       <Button onPress={()=>UpdateProductQuantity('remove')} title='-'/>
       <Button title={productQuantity}/>
       <Button onPress={()=>UpdateProductQuantity('add')} title='+'/>
@@ -161,20 +161,18 @@ Item already in Cart,quantity has been updated
 }
 
 const styles = StyleSheet.create({
-    container:{
-      
-        flex:1,
-    justifyContent:'center',
+
+    items_:{
+    display:'flex',
+    flex:1,
     alignItems:'center',
-        backgroundColor:'grey',
-        
-      
+    backgroundColor:'grey', 
     },
-    addtoCart:{
-        width:100,
+
+  addtoCart_:{
         display:'flex',
         flexDirection:'row',
         margin:5
-
     }
+    
 });

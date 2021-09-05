@@ -6,6 +6,7 @@ import { dataContext } from './dataContext';
 
 
 export default function Home({navigation}) {
+
   const{product_,data_}=useContext(dataContext)
   const[product,setProduct]=product_
   const[check,setCheck]=useState(false)
@@ -51,7 +52,7 @@ useEffect( async()=>{
               setProduct(item)
 navigation.navigate('Item')
             }}>
-            <Image style={{width:120,height:90}}  
+            <Image style={{width:95,height:95,maxWidth:95}}  
             source={{uri:item.url}} /> 
             <Text>{item.title}</Text>
             <Text style={{color:'tomato'}}>${item.price}</Text>
@@ -69,12 +70,11 @@ navigation.navigate('Item')
 
 const styles = StyleSheet.create({
     container:{
-     
-        flex:1,
+    display:'flex',
+    flexDirection:'column',
+    flex:1,
     justifyContent:'center',
     alignItems:'center',
-        backgroundColor:'grey',
-        
-      
+    backgroundColor:'grey', 
     }
 });
